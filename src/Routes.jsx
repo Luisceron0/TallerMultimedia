@@ -10,6 +10,12 @@ import Luces from "./pages/Luces";
 import Sombras from "./pages/Sombras";
 import Efectos from "./pages/Efectos";
 import Laboratorio1 from "./pages/Laboratorio1";
+import Practica1 from "./pages/Laboratorio/Practica-1";
+import PracticaJerarquia from "./pages/Laboratorio/Practica-jerarquia";
+import Practica2 from "./pages/Laboratorio/Practica-2";
+import Practica3 from "./pages/Laboratorio/Practica-3";
+import Practica4 from "./pages/Laboratorio/Practica-4";
+import Practica5 from "./pages/Laboratorio/Practica-5";
 
 
 const routes = [
@@ -23,7 +29,12 @@ const routes = [
   { path: "sombras", element: <Sombras /> },
   { path: "efectos", element: <Efectos /> },
   { path: "laboratorio1", element: <Laboratorio1 /> },
-
+  { path: "practica-1", element: <Practica1 /> },
+  { path: "practica-jerarquia", element: <PracticaJerarquia /> },
+  { path: "practica-2", element: <Practica2 /> },
+  { path: "practica-3", element: <Practica3 /> },
+  { path: "practica-4", element: <Practica4 /> },
+  { path: "practica-5", element: <Practica5 /> },
 ];
 
 export default routes;

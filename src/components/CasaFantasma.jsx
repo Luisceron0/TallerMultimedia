@@ -168,6 +168,21 @@ const CasaEscena = () => {
       .step(0.001)
       .name("floorDisplacementBias");
 
+    // GUI for shadows
+    const shadowFolder = gui.addFolder("Sombras");
+    shadowFolder.add(walls, "castShadow").name("Walls Cast Shadow");
+    shadowFolder.add(walls, "receiveShadow").name("Walls Receive Shadow");
+    shadowFolder.add(roof, "castShadow").name("Roof Cast Shadow");
+
+    // GUI for sky
+    const skyFolder = gui.addFolder("Cielo");
+    skyFolder.add(sky.material.uniforms["rayleigh"], "value").min(0).max(10).step(0.1).name("Rayleigh");
+    skyFolder.add(sky.material.uniforms["turbidity"], "value").min(0).max(20).step(0.1).name("Turbidity");
+
+    // GUI for fog
+    const fogFolder = gui.addFolder("Niebla");
+    fogFolder.add(scene.fog, "density").min(0).max(0.5).step(0.01).name("Fog Density");
+
     const house = new THREE.Group();
     scene.add(house);
 
@@ -248,28 +263,31 @@ const CasaEscena = () => {
     bush4.rotation.x = -0.75;
     house.add(bush1, bush2, bush3, bush4);
 
-    // Graves - tumbas
-    const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
-    const graveMaterial = new THREE.MeshStandardMaterial({
-      map: graveColorTexture,
-      normalMap: graveNormalTexture,
-      aoMap: graveARMTexture,
-      roughnessMap: graveARMTexture,
-      metalnessMap: graveARMTexture,
+    // Crosses - cruces
+    const crossGeometry = new THREE.BoxGeometry(0.1, 0.8, 0.1);
+    const crossMaterial = new THREE.MeshStandardMaterial({
+      color: "#8B4513"
     });
-    const graves = new THREE.Group();
-    scene.add(graves);
+    const crosses = new THREE.Group();
+    scene.add(crosses);
     for (let i = 0; i < 30; i++) {
       const angle = Math.random() * Math.PI * 2;
       const radius = 3 + Math.random() * 4;
       const x = Math.sin(angle) * radius;
       const z = Math.cos(angle) * radius;
-      const grave = new THREE.Mesh(graveGeometry, graveMaterial);
-      grave.position.set(x, Math.random() * 0.4, z);
-      grave.rotation.x = (Math.random() - 0.5) * 0.4;
-      grave.rotation.y = (Math.random() - 0.5) * 0.4;
-      grave.rotation.z = (Math.random() - 0.5) * 0.4;
-      graves.add(grave);
+      const crossGroup = new THREE.Group();
+      crossGroup.position.set(x, 0, z);
+      crossGroup.rotation.y = Math.random() * Math.PI;
+
+      const vertical = new THREE.Mesh(crossGeometry, crossMaterial);
+      vertical.position.y = 0.4;
+      crossGroup.add(vertical);
+
+      const horizontal = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.1, 0.1), crossMaterial);
+      horizontal.position.y = 0.6;
+      crossGroup.add(horizontal);
+
+      crosses.add(crossGroup);
     }
 
     /**

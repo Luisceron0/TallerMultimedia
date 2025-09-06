@@ -1,5 +1,5 @@
 import React from "react";
-import Objgrupo from "../components/objgrupo";
+import Objgrupo from "../components/Objgrupo";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 
@@ -15,7 +15,7 @@ const Ejercicio4 = () => {
           camera={{ position: [10, 5, 10], fov: 40 }}
         >
           <axesHelper args={[2]} />
-          <Environment preset="warehouse" />
+          <Environment preset="night" />
           <Objgrupo/>
           <OrbitControls enableRotate={true} />
         </Canvas>
