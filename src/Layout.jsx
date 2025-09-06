@@ -38,11 +38,12 @@ function Layout() {
                 <Dropdown.Menu>
                   <Dropdown.Item href="/laboratorio1">Albedo - Alpha - Transparent</Dropdown.Item>
                   <Dropdown.Item href="/practica-1">Práctica 1 - Grupos con Rotaciones</Dropdown.Item>
-                  <Dropdown.Item href="/practica-jerarquia">Práctica Jerarquía de Escena</Dropdown.Item>
+
                   <Dropdown.Item href="/practica-2">Práctica 2 - Agrupación Three.js</Dropdown.Item>
                   <Dropdown.Item href="/practica-3">Práctica 3 - Luces R3F</Dropdown.Item>
                   <Dropdown.Item href="/practica-4">Práctica 4 - Luces con GUI</Dropdown.Item>
                   <Dropdown.Item href="/practica-5">Práctica 5 - Materiales</Dropdown.Item>
+                  <Dropdown.Item href="/practica-6">Práctica 6 - Casa 3D</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav>

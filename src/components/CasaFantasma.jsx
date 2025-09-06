@@ -168,21 +168,6 @@ const CasaEscena = () => {
       .step(0.001)
       .name("floorDisplacementBias");
 
-    // GUI for shadows
-    const shadowFolder = gui.addFolder("Sombras");
-    shadowFolder.add(walls, "castShadow").name("Walls Cast Shadow");
-    shadowFolder.add(walls, "receiveShadow").name("Walls Receive Shadow");
-    shadowFolder.add(roof, "castShadow").name("Roof Cast Shadow");
-
-    // GUI for sky
-    const skyFolder = gui.addFolder("Cielo");
-    skyFolder.add(sky.material.uniforms["rayleigh"], "value").min(0).max(10).step(0.1).name("Rayleigh");
-    skyFolder.add(sky.material.uniforms["turbidity"], "value").min(0).max(20).step(0.1).name("Turbidity");
-
-    // GUI for fog
-    const fogFolder = gui.addFolder("Niebla");
-    fogFolder.add(scene.fog, "density").min(0).max(0.5).step(0.01).name("Fog Density");
-
     const house = new THREE.Group();
     scene.add(house);
 
@@ -358,9 +343,9 @@ const CasaEscena = () => {
     walls.receiveShadow = true;
     roof.castShadow = true;
     floor.receiveShadow = true;
-    for (const grave of graves.children) {
-      grave.castShadow = true;
-      grave.receiveShadow = true;
+    for (const cross of crosses.children) {
+      cross.castShadow = true;
+      cross.receiveShadow = true;
     }
 
     directionalLight.shadow.mapSize.width = 256;
@@ -398,6 +383,21 @@ const CasaEscena = () => {
      * Fog - Niebla
      */
     scene.fog = new THREE.FogExp2("#04343f", 0.1);
+
+    // GUI for shadows
+    const shadowFolder = gui.addFolder("Sombras");
+    shadowFolder.add(walls, "castShadow").name("Walls Cast Shadow");
+    shadowFolder.add(walls, "receiveShadow").name("Walls Receive Shadow");
+    shadowFolder.add(roof, "castShadow").name("Roof Cast Shadow");
+
+    // GUI for sky
+    const skyFolder = gui.addFolder("Cielo");
+    skyFolder.add(sky.material.uniforms["rayleigh"], "value").min(0).max(10).step(0.1).name("Rayleigh");
+    skyFolder.add(sky.material.uniforms["turbidity"], "value").min(0).max(20).step(0.1).name("Turbidity");
+
+    // GUI for fog
+    const fogFolder = gui.addFolder("Niebla");
+    fogFolder.add(scene.fog, "density").min(0).max(0.5).step(0.01).name("Fog Density");
 
     /**
      * Animate
