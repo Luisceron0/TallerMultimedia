@@ -23,7 +23,6 @@
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.5",
-    "react-toastify": "^11.0.5",
     "three": "^0.173.0",
     "use-sound": "^4.0.3"
   },

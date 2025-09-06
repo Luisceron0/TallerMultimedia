@@ -77,9 +77,10 @@ const SombrasEscena = () => {
         /**
          * Material compartido (para que GUI lo controle)
          */
-        const material = new THREE.MeshPhongMaterial({
+        const material = new THREE.MeshStandardMaterial({
             color: 0x8888ff,
-            shininess: 100
+            metalness: 0.3,
+            roughness: 0.6
         });
 
         /**
@@ -89,16 +90,12 @@ const SombrasEscena = () => {
         sphere.position.x = -1.5;
         sphere.castShadow = true;
 
-        const cube = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.9, 0.9), material);
-        cube.position.x = 1.5;
-        cube.castShadow = true;
-
         const plane = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), material);
         plane.rotation.x = -Math.PI * 0.5;
         plane.position.y = -0.65;
         plane.receiveShadow = true;
 
-        scene.add(sphere, cube, plane);
+        scene.add(sphere, plane);
 
         /**
          * Controls
@@ -119,7 +116,8 @@ const SombrasEscena = () => {
         lightFolder.add(directionalLight.position, "z").min(-5).max(5).step(0.001).name("DirLight Z");
 
         const matFolder = gui.addFolder("Materiales");
-        matFolder.add(material, "shininess").min(0).max(200).step(1).name("Shininess");
+        matFolder.add(material, "metalness").min(0).max(1).step(0.01).name("Metalness");
+        matFolder.add(material, "roughness").min(0).max(1).step(0.01).name("Roughness");
 
         /**
          * Resize Handling

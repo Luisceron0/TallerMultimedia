@@ -248,42 +248,28 @@ const CasaEscena = () => {
     bush4.rotation.x = -0.75;
     house.add(bush1, bush2, bush3, bush4);
 
-    // Crosses - cruces
-    const crossGeometryVertical = new THREE.BoxGeometry(0.2, 1.0, 0.2);
-    const crossGeometryHorizontal = new THREE.BoxGeometry(0.6, 0.2, 0.2);
-    const crossMaterial = new THREE.MeshStandardMaterial({
+    // Graves - tumbas
+    const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
+    const graveMaterial = new THREE.MeshStandardMaterial({
       map: graveColorTexture,
       normalMap: graveNormalTexture,
       aoMap: graveARMTexture,
       roughnessMap: graveARMTexture,
       metalnessMap: graveARMTexture,
     });
-    const crosses = new THREE.Group();
-    scene.add(crosses);
+    const graves = new THREE.Group();
+    scene.add(graves);
     for (let i = 0; i < 30; i++) {
       const angle = Math.random() * Math.PI * 2;
       const radius = 3 + Math.random() * 4;
       const x = Math.sin(angle) * radius;
       const z = Math.cos(angle) * radius;
-      const cross = new THREE.Group();
-      cross.position.set(x, Math.random() * 0.4, z);
-      cross.rotation.x = (Math.random() - 0.5) * 0.4;
-      cross.rotation.y = (Math.random() - 0.5) * 0.4;
-      cross.rotation.z = (Math.random() - 0.5) * 0.4;
-
-      const vertical = new THREE.Mesh(crossGeometryVertical, crossMaterial);
-      vertical.position.y = 0.3;
-      vertical.castShadow = true;
-      vertical.receiveShadow = true;
-
-      const horizontal = new THREE.Mesh(crossGeometryHorizontal, crossMaterial);
-      horizontal.position.y = 0.6;
-      horizontal.castShadow = true;
-      horizontal.receiveShadow = true;
-
-      cross.add(vertical);
-      cross.add(horizontal);
-      crosses.add(cross);
+      const grave = new THREE.Mesh(graveGeometry, graveMaterial);
+      grave.position.set(x, Math.random() * 0.4, z);
+      grave.rotation.x = (Math.random() - 0.5) * 0.4;
+      grave.rotation.y = (Math.random() - 0.5) * 0.4;
+      grave.rotation.z = (Math.random() - 0.5) * 0.4;
+      graves.add(grave);
     }
 
     /**
@@ -354,9 +340,9 @@ const CasaEscena = () => {
     walls.receiveShadow = true;
     roof.castShadow = true;
     floor.receiveShadow = true;
-    for (const cross of crosses.children) {
-      cross.castShadow = true;
-      cross.receiveShadow = true;
+    for (const grave of graves.children) {
+      grave.castShadow = true;
+      grave.receiveShadow = true;
     }
 
     directionalLight.shadow.mapSize.width = 256;
